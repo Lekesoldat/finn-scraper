@@ -31,4 +31,4 @@ const scrape = async (market, search, sort = 'relevant', location = 'Oslo') => {
   console.log(items);
 };
 
-scrape('torget', 'air pods', 'høy', 'Oslo');
+scrape('torget', 'air pods', 'høy');

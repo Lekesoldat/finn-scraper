@@ -2,6 +2,12 @@
 
 A scraping tool for Finn.no.
 
+## Result
+
+A search for 'air pods' in Oslo, sorted on price.
+
+![Image](https://i.imgur.com/r8fPXKH.png)
+
 ## Running the scraper
 
 Make sure to configure your scrape in the function call.

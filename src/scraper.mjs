@@ -39,4 +39,4 @@ const scrape = async (
   console.log(items);
 };
 
-scrape('torget', 'air pods', 'høy');
+scrape('torget', 'air pods', 'høy', 'Oslo');

@@ -1,12 +1,17 @@
 import fetch from 'node-fetch';
 import { MARKET_LIST, LOCATIONS, SORT } from './constants.mjs';
 
-const scrape = async (market, search, sort = 'relevant', location = 'Oslo') => {
+const scrape = async (
+  market,
+  search,
+  sort = 'relevant',
+  location = undefined
+) => {
   const query = `https://www.finn.no/${
     MARKET_LIST[market]
-  }/forsale/search.json?location=${LOCATIONS[location]}&q=${encodeURIComponent(
-    search
-  )}&sort=${SORT[sort]}`;
+  }/forsale/search.json?${
+    location ? 'location=' + LOCATIONS[location] : ''
+  }&q=${encodeURIComponent(search)}&sort=${SORT[sort]}`;
 
   console.log(
     'CTRL + click to open search i browser: ',
@@ -24,7 +29,10 @@ const scrape = async (market, search, sort = 'relevant', location = 'Oslo') => {
     .map(x => ({
       url: `https://www.finn.no/${MARKET_LIST[market]}/forsale/ad.html?finnkode=${x.adId}`,
       title: x.titleRow,
-      price: parseInt(x.bodyRow[0].replace(/\s/g, '')),
+      price:
+        x.bodyRow.length != 0
+          ? parseInt(x.bodyRow[0].replace(/\s/g, ''))
+          : 'Ingen pris',
       place: x.topRowCenter
     }));
 
